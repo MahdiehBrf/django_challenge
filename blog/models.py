@@ -29,8 +29,8 @@ class Post(models.Model):
             message += ''
         message += ', ثبت شده است.'
 
-        link = f'{self.get_absolute_url()}/forms/{forms[0]["id"]}/responses/' \
-            if len(forms) == 1 else f'{self.get_absolute_url()}/forms/'
+        link = f'test.ir/forms/{forms[0]["id"]}/responses/' \
+            if len(forms) == 1 else f'test.ir/forms/'
 
         message += f'''برای مشاهده‌ی آن میتوانید به آدرس زیر مراجعه کنید.
 {link}'''
