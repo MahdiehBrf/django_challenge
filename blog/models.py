@@ -9,7 +9,8 @@ from kavenegar import HTTPException, APIException
 
 class Post(models.Model):
     title = models.CharField(max_length=500)
-    author = models.ForeignKey('user.User', related_name='posts', on_delete=deletion.SET_NULL)
+    author = models.ForeignKey('user.User', related_name='posts', on_delete=deletion.SET_NULL,
+                               null=True, blank=True)
     _created_at = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):

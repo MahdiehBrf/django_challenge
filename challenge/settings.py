@@ -141,3 +141,5 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 
 
 KAVENEGAR_API = KavenegarAPI(os.environ.get('KAVENEGAR_API_KEY', ''))
+
+AUTH_USER_MODEL = 'user.User'
