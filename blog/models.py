@@ -25,8 +25,8 @@ class Post(models.Model):
     def send_forms_responses_report_notification(self, forms, notification_type='email'):
         message = f'سلام {self.author.name} گرامی'
         for form in forms:
-            # TODO: fill message from form data
-            message += ''
+            count = form.responses.all().count()
+            message += f'{count} پاسخ برای فرم {form.title}'
         message += ', ثبت شده است.'
 
         link = f'test.ir/forms/{forms[0]["id"]}/responses/' \
