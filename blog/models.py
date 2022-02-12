@@ -25,8 +25,8 @@ class Post(models.Model):
     def send_forms_responses_report_notification(self, forms, notification_type='email'):
         message = f'سلام {self.author.name} گرامی'
         for form in forms:
-            # TODO: fill message from form data
-            message += ''
+            count = form.responses.all().count()
+            message += f'{count} پاسخ برای فرم {form.title}'
         message += ', ثبت شده است.'
 
         link = f'test.ir/forms/{forms[0]["id"]}/responses/' \
@@ -34,6 +34,7 @@ class Post(models.Model):
 
         message += f'''برای مشاهده‌ی آن میتوانید به آدرس زیر مراجعه کنید.
 {link}'''
+
         self.notify_author(notification_type=notification_type, message=message,
                            email_subject='گزارش فرم‌ها', kave_sms_template_name='form_response')
 

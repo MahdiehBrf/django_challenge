@@ -1,12 +1,19 @@
 from celery import shared_task
 
 from blog.models import Post
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 
-@shared_task
+@shared_task(name='notify')
 def send_form_responses_report_custom_schedule():
     post_ids_to_forms_dict = {}
-    # TODO: fill it
+    users = User.objects.all()
+    for user in users:
+        post = user.posts.all()
+        for elm in post:
+            post_ids_to_forms_dict[elm.id] = elm.forms.all()
+
     posts = Post.objects.filter(id__in=post_ids_to_forms_dict.keys())
     for post in posts:
         post.send_forms_responses_report_notification(post_ids_to_forms_dict[post.id])
