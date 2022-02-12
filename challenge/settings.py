@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'rest_framework',
+    'django_celery_beat',
     'celery',
     'blog',
     'user',
@@ -143,3 +145,10 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 KAVENEGAR_API = KavenegarAPI(os.environ.get('KAVENEGAR_API_KEY', ''))
 
 AUTH_USER_MODEL = 'user.User'
+
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_TIMEZONE = "Asia/Tehran"
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
